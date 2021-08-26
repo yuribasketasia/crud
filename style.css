@@ -1,0 +1,10 @@
+.wrapper {
+	width: 600px;
+	margin: 0 auto;
+	}
+body {
+	padding: 50px;
+}
+table tr td:last-child {
+	width: 120px;
+}
