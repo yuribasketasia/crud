@@ -5,37 +5,37 @@ $link1 = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 $sql = "SELECT * FROM income";
 $sum = 0;
 $result = mysqli_query($link1, $sql);
-if(mysqli_num_rows($result) > 0){;
+if(mysqli_num_rows($result) > 0){
 ?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
-  <section class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1>Income</h1>
-        </div>
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-            <li class="breadcrumb-item active">Income</li>
-          </ol>
-        </div>
-      </div>
-    </div><!-- /.container-fluid -->
-  </section>
+<!--  <section class="content-header">-->
+<!--    <div class="container-fluid">-->
+<!--      <div class="row mb-2">-->
+<!--        <div class="col-sm-6">-->
+<!--          <h1>Income</h1>-->
+<!--        </div>-->
+<!--        <div class="col-sm-6">-->
+<!--          <ol class="breadcrumb float-sm-right">-->
+<!--            <li class="breadcrumb-item"><a href="index.php">Home</a></li>-->
+<!--            <li class="breadcrumb-item active">Income</li>-->
+<!--          </ol>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div> /.container-fluid -->
+<!--  </section>-->
 
 <div class="card">
   <div class="card-header">
-    <h3 class="card-title">Add, Edit or Delete Your Income</h3>
+    <h3 class="card-title" >Add, Edit or Delete Your Income</h3>
   </div>
-
   <!-- /.card-header -->
   <div class="card-body">
+    <a href="addIncome.php" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>  Add New income</a>
     <table id="example1" class="table table-bordered table-striped">
-      <a href="addIncome.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New income</a>
+
       <thead>
       <tr>
         <th>ID</th>
