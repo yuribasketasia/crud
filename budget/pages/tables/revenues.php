@@ -1,6 +1,5 @@
 <?php
 require_once ("header.php");
-require_once("database.php");
 $link1 = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 $sql = "SELECT * FROM income";
 $sum = 0;
