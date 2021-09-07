@@ -1,6 +1,7 @@
 <?php
+//connect to db
 require_once ("database.php");
-$link = mysqli_connect (DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+//define variables and initialize with empty values
 $name = $address = $salary = "";
 $name_err = $address_err = $salary_err = "";
 

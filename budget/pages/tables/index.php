@@ -1,4 +1,4 @@
-<?php 
+<?php
 	require_once("database.php");
 	$link1 = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
     $sql = "SELECT * FROM employees";
@@ -53,7 +53,7 @@
 						  <td>
 							<a href="read.php?id=<?php echo $row['id']; ?>" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>
 						    <a href="update.php?id=<?php echo $row['id']; ?>" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>
-                            <a href="delete.php?id=<?php echo  $row['id']; ?>" class="mr-3" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>
+                            <a href="incomeDelete.php?id=<?php echo  $row['id']; ?>" class="mr-3" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>
 
                           </td>
 						</tr>
@@ -61,17 +61,17 @@
 					  </tbody>
 					</table>
 					<?php mysqli_free_result($result);
-							} else 
-							{ 
-								echo "<div class='alert alert-danger'><em>No records were found.</em></div>"; 
+							} else
+							{
+								echo "<div class='alert alert-danger'><em>No records were found.</em></div>";
 							}
 
 						mysqli_close($link1);
-						?>	
+						?>
 				</div>
-            </div>        
+            </div>
         </div>
-    </div>	
+    </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
 

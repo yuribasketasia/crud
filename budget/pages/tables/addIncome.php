@@ -1,63 +1,67 @@
 <?php
-require_once ("header.php");
+//connect to db and header
+//require_once ("header.php");
 require_once("database.php");
-$link = mysqli_connect (DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
-$category = $date = $amount = "";
-$category_err = $date_err = $amount_err = "";
 
+//define variables and initialize with empty values
+$incomeAmount = $incomeCategory = $incomeDate = "";
+$incomeAmount_err = $incomeCategory_err = $incomeDate_err = "";
+
+//processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-  $input_category = trim($_POST["category"]);
-  if(empty($input_category)){
-    $name_err = "Please select one";
-  } elseif (!filter_var($input_category, FILTER_VALIDATE_REGEXP,
-    array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
-    $name_err = "Please enter valid name.";
-  } else {
-    $category = $input_category;
-  }
-  //validate address
+  //validate amount
+  $input_incomeAmount = trim($_POST["incomeAmount"]);
+    if (empty($input_incomeAmount)){
+      $input_incomeAmount = "Please enter valid amount";
+    } elseif(!ctype_digit($input_incomeAmount)) {
+      $input_incomeAmount = "Please enter a positive integer value";
+    } else {
+      $incomeAmount = $input_incomeAmount;
+    }
 
-  $input_address = trim($_POST["date"]);
-  if (empty($input_date)){
-    $address_err = "Please enter your address";
-  } else {
-    $address = $input_date;
-  }
-  //validate salary
-  $input_salary = trim($_POST["amount"]);
-  if (empty($input_amount)){
-    $salary_err = "Please enter valid amount";
-  } elseif(!ctype_digit($input_amount)) {
-    $salary_err = "Please enter a positive integer value";
-  } else {
-    $amount = $amount_err;
-  }
+  //validate category
+  $input_incomeCategory = trim($_POST["incomeCategory"]);
+    if(empty($input_incomeCategory)){
+      $incomeCategory_err = "Please select one";
+    } elseif (!filter_var($input_incomeCategory, FILTER_VALIDATE_REGEXP,
+      array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
+      $incomeCategory_err = "Please enter choose name.";
+    } else {
+      $incomeCategory = $input_incomeCategory;
+    }
+
+  //validate date
+  $input_incomeDate = trim($_POST["incomeDate"]);
+    if (empty($input_incomeDate)){
+      $incomeDate_err = "Please enter your date";
+    } else {
+      $incomeDate = $input_incomeDate;
+    }
 
   //check input before inserting to database;
-  if(empty($name_err) && empty($address_err) && empty($salary_err)){
+  if(empty($incomeAmount_err) && empty($incomeCategory_err) && empty($incomeDate_err)){
     //prepare an insert statement
-    $sql = "INSERT INTO employees (name, address, salary) VALUES (?, ?, ?)";
-
-    if ($stmt = mysqli_prepare($link, $sql)){
-      ///bind variables to the prepared statement as parameters
-      mysqli_stmt_bind_param($stmt, "sss", $param_name, $param_address, $param_salary);
-      $param_name = $name;
-      $param_address = $address;
-      $param_salary = $salary;
-
-      // attempt to execute the prepared statement
-      if (mysqli_stmt_execute($stmt)){
-        header("location: index2.php");
-        exit();
-      } else{
-        echo "Oops! something went wrong. Please try again later.";
+    $sql = "INSERT INTO income (incomeAmount, incomeCategory, incomeDate) VALUES (?, ?, ?)";
+      if ($stmt = mysqli_prepare($link, $sql)){
+        ///bind variables to the prepared statement as parameters
+        mysqli_stmt_bind_param($stmt, "sss", $param_amount, $param_category, $param_date);
+        $param_amount = $incomeAmount;
+        $param_category = $incomeCategory;
+        $param_date = $incomeDate;
+          // attempt to execute the prepared statement
+          if (mysqli_stmt_execute($stmt)){
+            header("location: revenues.php");
+            exit();
+          } else{
+            echo "Oops! something went wrong. Please try again later.";
+          }
       }
-    }
     //close statement
     mysqli_stmt_close($stmt);
   }
   mysqli_close($link);
 }
+require_once('header.php');
 ?>
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -88,34 +92,31 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
           </div>
 
           <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="card-body">
+            <div class="form-group">
               <div class="form-group">
-                <label>Category</label>
-                  <select class="custom-select">
-                    <option>salary</option>
-                    <option>overtime</option>
-                    <option>freelancing</option>
-                  </select>
-                <label>Date</label>
-                <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                  <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate"/>
-                  <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                  </div>
-                </div>
                 <label>Amount</label>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control <?php echo (!empty($amount_err)) ? 'is-valid' : ''; ?>" value="<?php echo $amount; ?>">
-                  <div class="input-group-append">
-                    <span class="input-group-text">.00</span>
-                    <span class="invalid-feedback"><?php echo $amount_err; ?></span>
-                  </div>
-                </div>
-                <input type="submit" class="btn btn-primary" value="Submit">
-                <a href="revenues.php" class="btn btn-secondary ml-2">Cancel</a>
+                <input name="incomeAmount" class="form-control<?php echo (!empty($incomeAmount_err)) ? 'is-valid' : ''; ?>"
+                       value="<?php echo $incomeAmount; ?>">
+                <span class="invalid-feedback"><?php echo $incomeAmount_err; ?></span>
               </div>
+
+              <label>Category</label>
+              <input type="text" name="incomeCategory" class="form-control<?php echo (!empty($incomeCategory_err)) ? 'is-valid' : ''; ?>"
+                     value="<?php echo $incomeCategory; ?>">
+              <span class="invalid-feedback"><?php echo $incomeCategory_err; ?></span>
             </div>
+            <div class="form-group">
+              <label>date</label>
+              <input type="date" name="incomeDate" class="form-control<?php echo (!empty($incomeDate_err)) ? 'is-valid' : ''; ?>"
+                     value="<?php echo $incomeCategory; ?>">
+              <span class="invalid-feedback"><?php echo $incomeDate_err; ?></span>
+            </div>
+
+            <input type="submit" class="btn btn-primary" value="Submit">
+            <a href="index.php" class="btn btn-secondary ml-2">Cancel</a>
           </form>
+
+
         </div>
       </div>
     </div>

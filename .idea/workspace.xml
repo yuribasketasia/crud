@@ -20,8 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2996bbf3-838b-4c6c-bd53-2190843e9692" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/budget/pages/tables/login.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/budget/pages/tables/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/budget/pages/tables/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget/pages/tables/addIncome.php" beforeDir="false" afterPath="$PROJECT_DIR$/budget/pages/tables/addIncome.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget/pages/tables/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/budget/pages/tables/create.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget/pages/tables/delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/budget/pages/tables/incomeDelete.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget/pages/tables/expenses.php" beforeDir="false" afterPath="$PROJECT_DIR$/budget/pages/tables/expenses.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget/pages/tables/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/budget/pages/tables/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget/pages/tables/loan.php" beforeDir="false" afterPath="$PROJECT_DIR$/budget/pages/tables/loan.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/budget/pages/tables/revenues.php" beforeDir="false" afterPath="$PROJECT_DIR$/budget/pages/tables/revenues.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,7 +69,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.general" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -82,7 +88,7 @@
       <workItem from="1629953834694" duration="69000" />
       <workItem from="1629968047647" duration="24941000" />
       <workItem from="1630491383135" duration="1822000" />
-      <workItem from="1630573652282" duration="12649000" />
+      <workItem from="1630573652282" duration="26832000" />
     </task>
     <servers />
   </component>
@@ -117,10 +123,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="624" y="206" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1630490490870" />
-    <state x="0" y="168" key="SettingsEditor" timestamp="1630476276794">
+    <state x="0" y="157" key="SettingsEditor" timestamp="1630986672971">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="0" y="168" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1630476276794" />
+    <state x="0" y="157" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1630986672971" />
     <state x="197" y="244" key="run.anything.popup" timestamp="1629971787150">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
