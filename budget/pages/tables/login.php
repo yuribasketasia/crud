@@ -1,79 +1,83 @@
 <?php
 //start the session
 session_start();
-  //check if the user is already loged in
+  //check if the user is already logged in
   if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true ){
-    header("location:index.php");
+    header("location: index.php");
     exit();
   }
-  //connect db
-  require_once ('database.php');
-  //Define variables and initialize with empty values
-  $email = $password = "";
-  $email_err = $password_err = $login_Err = "";
 
-// Processing form data when form is submitted
-    if ($_SERVER["REQUEST_METHOD"] == "POST"){
-      //CHECK IF email is empty
-      if (empty(trim($_POST["email"]))){
-        $email_err = "Please enter your email address";
-      }else{
-        $email = trim($_POST["email"]);
+  //connect dbl
+  require_once "database.php";
+  //Define variables and initialize with empty values
+  $username = $password = "";
+  $username_err = $password_err = $login_err = "";
+
+  if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    // Check if username is empty
+    if(empty(trim($_POST["username"]))){
+      $username_err = "Please enter username.";
+    } else{
+      $username = trim($_POST["username"]);
+    }
+    // Check if password is empty
+    if(empty(trim($_POST["password"]))){
+      $password_err = "Please enter your password.";
+    } else{
+      $password = trim($_POST["password"]);
+    }
+    // Validate credentials
+    if(empty($username_err) && empty($password_err)){
+      // Prepare a select statement
+      $sql = "SELECT id, username, password FROM admin WHERE username = ?";
+
+      if($stmt = mysqli_prepare($link, $sql)){
+        // Bind variables to the prepared statement as parameters
+        mysqli_stmt_bind_param($stmt, "s", $param_username);
+
+        // Set parameters
+        $param_username = $username;
+
+        // Attempt to execute the prepared statement
+        if(mysqli_stmt_execute($stmt)){
+          // Store result
+          mysqli_stmt_store_result($stmt);
+
+          // Check if username exists, if yes then verify password
+          if(mysqli_stmt_num_rows($stmt) == 1){
+            // Bind result variables
+            mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
+            if(mysqli_stmt_fetch($stmt)){
+              if(password_verify($password, $hashed_password)){
+                // Password is correct, so start a new session
+                session_start();
+                // Store data in session variables
+                $_SESSION["loggedin"] = true;
+                $_SESSION["id"] = $id;
+                $_SESSION["username"] = $username;
+                // Redirect user to welcome page
+                header("location: index.php");
+              } else{
+                // Password is not valid, display a generic error message
+                $login_err = "1 Invalid username or password.";
+              }
+            }
+          } else{
+            // Username doesn't exist, display a generic error message
+            $login_err = "Invalid username or password.";
+          }
+        } else{
+          echo "Oops! Something went wrong. Please try again later.";
+        }
+
+        // Close statement
+        mysqli_stmt_close($stmt);
       }
     }
 
-    //check if password is empty
-    if (empty(trim($_POST["password"]))){
-      $password_err = "Please enter your password";
-    }else{
-      $password = trim($_POST["password"]);
-    }
-
-    //validate credentials
-    if (empty($email_err) && empty($password_err)){
-      $sql = "SELECT id, email, password FROM admin WHERE email = ?";
-
-        if ($stmt = mysqli_prepare($link, $sql)){
-          mysqli_stmt_bind_param($stmt, "s", $param_email);
-          $param_email = $email;
-
-          //attemp to execute the prpared statement
-          if (mysqli_stmt_execute($stmt)){
-            //store result
-            mysqli_stmt_store_result($stmt);
-            //check if username exists
-            if(mysqli_stmt_num_rows($stmt) == 1){
-              // Bind result variables
-              mysqli_stmt_bind_result($stmt, $id, $email, $hashed_password);
-              if(mysqli_stmt_fetch($stmt)){
-                if(password_verify($password, $hashed_password)){
-                  // Password is correct, so start a new session
-                  session_start();
-                  //store dat in session variables
-                  $_SESSION["loggedin"] = true;
-                  $_SESSION["id"] == $id;
-                  $_SESSION["email"] == $email;
-                  // redirect user to welcome page
-                  header("location: index.php");
-                } else{
-                //password is not valid display a generic error
-                  $login_Err = "Invalid username password";
-                  }
-              }
-            } else{
-              // Username doesn't exist, display a generic error message
-              $login_err = "Invalid username or password.";
-              }
-          } else{
-            echo "Oops! Something went wrong. Please try again later.";
-          }
-          // Close statement
-          mysqli_stmt_close($stmt);
-        }
-    }
-  // Close connection
-  mysqli_close($link);
-
+    // Close connection
+    mysqli_close($link);
+  }
 ?>
 
 <!DOCTYPE html>
@@ -107,6 +111,19 @@ session_start();
   </style>
 </head>
 <body>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body{ font: 14px sans-serif; }
+    .wrapper{ width: 360px; padding: 20px; }
+  </style>
+</head>
+<body>
 <section class="vh-100">
   <div class="container-fluid h-custom">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -115,61 +132,43 @@ session_start();
              alt="Sample image">
       </div>
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-        <?php
-        if(!empty($login_err)){
-          echo '<div class="alert alert-danger">' . $login_err .'</div>';
-        }
-        ?>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" METHOD="post">
-          <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-            <p class="lead fw-normal mb-0 me-3">Welcome Back</p>
-          </div>
-          <div class="divider d-flex align-items-center my-4">
-            <p class="text-center fw-bold mx-3 mb-0"></p>
-          </div>
+          <div class="wrapper">
+            <h2>Login</h2>
+            <p>Please fill in your credentials to login.</p>
 
-          <!-- Email input -->
-          <div class="form-outline mb-4">
-            <input name="email" type="email" id="form3Example3" class="form-control form-control-lg"
-                   placeholder="Enter a valid email address" />
-            <label class="form-label" for="form3Example3">Email address</label>
-          </div>
-
-          <!-- Password input -->
-          <div class="form-outline mb-3">
-            <input name="password" type="password" id="form3Example4" class="form-control form-control-lg"
-                   placeholder="Enter password" />
-            <label class="form-label" for="form3Example4">Password</label>
-          </div>
-
-          <div class="d-flex justify-content-between align-items-center">
-            <!-- Checkbox -->
-            <div class="form-check mb-0">
-              <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-              <label class="form-check-label" for="form2Example3">
-                Remember me
-              </label>
-            </div>
-            <a href="#!" class="text-body">Forgot password?</a>
-          </div>
-
-          <div class="text-center text-lg-start mt-4 pt-2">
-            <button type="button" class="btn btn-primary btn-lg"
-                    style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-          </div>
-
-        </form>
+            <?php
+            if(!empty($login_err)){
+              echo '<div class="alert alert-danger">' . $login_err . '</div>';
+            }
+            ?>
+              <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <div class="form-group">
+                  <label>Username</label>
+                  <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+                  <span class="invalid-feedback"><?php echo $username_err; ?></span>
+                </div>
+                <div class="form-group">
+                  <label>Password</label>
+                  <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
+                  <span class="invalid-feedback"><?php echo $password_err; ?></span>
+                </div>
+                <div class="form-group">
+                  <input type="submit" class="btn btn-primary" value="Login">
+                </div>
+                <p>Frogot yoru password? <a href="resetPassword.php">Reset Password</a>.</p>
+              </form>
+    </div>
       </div>
     </div>
   </div>
   <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
-    <!-- Copyright -->
     <div class="text-white mb-3 mb-md-0">
       Copyright © 2021. All rights reserved.
     </div>
-
   </div>
 </section>
-</div>
+
+
+
 </body>
 </html>

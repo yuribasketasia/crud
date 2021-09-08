@@ -20,15 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2996bbf3-838b-4c6c-bd53-2190843e9692" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/budget/pages/tables/login.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budget/pages/tables/logout.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budget/pages/tables/registerAdmin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/budget/pages/tables/resetPassword.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/budget/pages/tables/addIncome.php" beforeDir="false" afterPath="$PROJECT_DIR$/budget/pages/tables/addIncome.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/budget/pages/tables/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/budget/pages/tables/create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/budget/pages/tables/delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/budget/pages/tables/incomeDelete.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/budget/pages/tables/expenses.php" beforeDir="false" afterPath="$PROJECT_DIR$/budget/pages/tables/expenses.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/budget/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget/pages/tables/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/budget/pages/tables/footer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget/pages/tables/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/budget/pages/tables/header.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/budget/pages/tables/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/budget/pages/tables/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/budget/pages/tables/loan.php" beforeDir="false" afterPath="$PROJECT_DIR$/budget/pages/tables/loan.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/budget/pages/tables/revenues.php" beforeDir="false" afterPath="$PROJECT_DIR$/budget/pages/tables/revenues.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget/pages/tables/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/budget/pages/tables/login.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +60,9 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/budget/pages/tables" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -88,7 +91,7 @@
       <workItem from="1629953834694" duration="69000" />
       <workItem from="1629968047647" duration="24941000" />
       <workItem from="1630491383135" duration="1822000" />
-      <workItem from="1630573652282" duration="26832000" />
+      <workItem from="1630573652282" duration="39446000" />
     </task>
     <servers />
   </component>
@@ -123,13 +126,17 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="624" y="206" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1630490490870" />
-    <state x="0" y="157" key="SettingsEditor" timestamp="1630986672971">
+    <state x="0" y="157" key="SettingsEditor" timestamp="1631075796061">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="0" y="157" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1630986672971" />
+    <state x="0" y="157" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1631075796061" />
     <state x="197" y="244" key="run.anything.popup" timestamp="1629971787150">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="197" y="244" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1629971787150" />
+    <state x="143" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1631080437006">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="143" y="230" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1631080437006" />
   </component>
 </project>
