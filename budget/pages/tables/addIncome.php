@@ -113,7 +113,7 @@ require_once('header.php');
             </div>
 
             <input type="submit" class="btn btn-primary" value="Submit">
-            <a href="index.php" class="btn btn-secondary ml-2">Cancel</a>
+            <a href="revenues.php" class="btn btn-secondary ml-2">Cancel</a>
           </form>
 
 
